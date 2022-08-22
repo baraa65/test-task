@@ -1,12 +1,15 @@
 ### Backend
-```Bash
+
+- to start the backend server run the folowing commands
+
+```bash
 cd backend
 
 python -m venv env
 
-env/Scripts/activate
+.\env\Scripts\activate
 
-pip install -t requirements.txt
+pip install -r requirements.txt
 
 python manage.py runserver
 
@@ -15,6 +18,8 @@ python manage.py runserver
 
 
 ### Frontend
+
+- to start the frontend server run the folowing commands
 
 ```bash
 cd frontend
