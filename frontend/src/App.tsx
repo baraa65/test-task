@@ -21,8 +21,6 @@ function App() {
 			})
 		})
 
-		console.error(formattedData)
-
 		return formattedData
 	}
 
@@ -39,7 +37,6 @@ function App() {
 			axios
 				.post('http://localhost:8000/predictor/predict-weight/', form)
 				.then(({ data }: { data: Prediction[] }) => {
-					console.error(data)
 					setChartsData(formatData(data))
 				})
 		}
