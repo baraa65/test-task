@@ -27,15 +27,20 @@ class PredictorView(APIView):
             r = [convert_to_float(value)
                  for key, value in list(row.items())][1:]
 
-            print(r)
             formatted_data.append(r)
 
-        testing_sample = pd.DataFrame(
+        df = pd.DataFrame(
             columns=["Species", "LengthVer", "LengthDia",
                      "LengthCro", "Height", "Width"],
             data=formatted_data
         )
 
-        y = model.predict(testing_sample)
+        y = model.predict(df)
 
-        return Response(y)
+        response = []
+
+        for row, weight in zip(formatted_data, y):
+            response.append({"features": {
+                            "Species": row[0], "LengthVer": row[1], "LengthDia": row[2], "LengthCro": row[3], "Height": row[4], "Width": row[5]}, "weight": weight})
+
+        return Response(response)
